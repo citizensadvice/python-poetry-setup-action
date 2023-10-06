@@ -2,13 +2,13 @@ name: 'Setup python with poetry environment'
 description: 'Set up an Actions job for Python and Poetry'
 inputs:
   python_version:
-    description: 'The Python version to install'
+    description: 'The Python version to install. Defaults to the version stated in the pyproject.toml file.'
     required: false
     default: ''
-  venv_path:
-    description: 'The path used for the virtual env'
+  project-root:
+    description: 'The location of the python project root. Defaults to the root of the project'
     required: false
-    default: '.venv'
+    default: '.'
 
 runs:
   using: 'composite'
@@ -18,7 +18,7 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ inputs.python_version }}
-        python-version-file: 'pyproject.toml'
+        python-version-file: ${{ inputs.project-root }}/pyproject.toml
 
     - name: Install Poetry
       id: setup-poetry
@@ -27,16 +27,17 @@ runs:
         virtualenvs-create: true
         virtualenvs-in-project: true
         installer-parallel: true
-        virtualenvs-path: ${{ inputs.venv-path }}
+        virtualenvs-path: ${{ inputs.project-root }}/.venv
 
     - name: Load cached venv
       id: cached-venv
       uses: actions/cache@v2
       with:
-        path: ${{ inputs.venv-path }}
+        path: ${{ inputs.project-root }}/.venv
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
     - name: Install dependencies
       if: steps.cached-venv.outputs.cache-hit != 'true'
       shell: bash
+      working-directory: ${{ inputs.project-root }}
       run: poetry install --no-interaction
