@@ -1,0 +1,41 @@
+name: 'Setup python with poetry environment'
+description: 'Set up an Actions job for Python and Poetry'
+inputs:
+  python_version:
+    description: 'The Python version to install'
+    required: false
+    default: ''
+  venv_path:
+    description: 'The path used for the virtual env'
+    required: false
+    default: '.venv'
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      id: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python_version }}
+        python-version-file: 'pyproject.toml'
+
+    - name: Install Poetry
+      id: setup-python
+      uses: snok/install-poetry@v1.3.4
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
+        virtualenvs-path: ${{ inputs.venv-path }}
+
+    - name: Load cached venv
+      id: cached-venv
+      uses: actions/cache@v2
+      with:
+        path: ${{ inputs.venv-path }}
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies
+      if: steps.cached-venv.outputs.cache-hit != 'true'
+      shell: bash
+      run: poetry install --no-interaction
