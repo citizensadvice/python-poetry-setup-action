@@ -9,6 +9,7 @@ inputs:
     description: 'The path used for the virtual env'
     required: false
     default: '.venv'
+
 runs:
   using: 'composite'
   steps:
@@ -20,7 +21,7 @@ runs:
         python-version-file: 'pyproject.toml'
 
     - name: Install Poetry
-      id: setup-python
+      id: setup-poetry
       uses: snok/install-poetry@v1.3.4
       with:
         virtualenvs-create: true
