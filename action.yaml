@@ -9,6 +9,14 @@ inputs:
     description: 'The location of the python project root. Defaults to the root of the project'
     required: false
     default: '.'
+  install_cdk:
+    description: 'Install the AWS CDK. Defaults to false'
+    required: false
+    default: '.'
+  cache_venv:
+    description: 'Cache the .venv directory for use with later workflow runs. Defaults to true'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
@@ -29,8 +37,20 @@ runs:
         installer-parallel: true
         virtualenvs-path: ${{ inputs.project-root }}/.venv
 
+    - name: Setup Node
+      id: setup-node
+      if: ${{ inputs.install_cdk }}
+      uses: actions/setup-node@v3
+
+    - name: Install CDK
+      id: install_cdk
+      if: ${{ inputs.install_cdk }}
+      shell: bash
+      run: npm install -g aws-cdk
+
     - name: Load cached venv
       id: cached-venv
+      if: ${{ inputs.cache_venv }}
       uses: actions/cache@v2
       with:
         path: ${{ inputs.project-root }}/.venv
