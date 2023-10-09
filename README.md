@@ -22,3 +22,19 @@ This action will cache the `.venv` directory for use with later workflow runs. Y
 | `project_root`   | The location of the python project root                    | No       | The root of the project           |
 | `install_cdk`    | Install the AWS CDK                                        | No       | False                             |
 | `cache_venv`     | Cache the .venv directory for use with later workflow runs | No       | True                              |
+
+## Example
+
+```yaml
+jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: citizensadvice/python-poetry-setup-action@v0
+
+      - name: Pytest
+        run: poetry run pytest
+```
