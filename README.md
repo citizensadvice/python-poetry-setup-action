@@ -5,7 +5,7 @@ A Github Action that will:
 - Setup Python and Poetry
 - Optionally set up the AWS CDK
 - Load the `.venv` directory from cache
-- Install the project dependencies
+- Install the project dependencies (i.e. `poetry install`)
 
 > [!NOTE]  
 > - This action will **not** perform a fetch of your project. This must be performed before this action is run
