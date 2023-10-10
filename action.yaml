@@ -60,7 +60,7 @@ runs:
       if: steps.cached-venv.outputs.cache-hit != 'true'
       shell: bash
       working-directory: ${{ inputs.project_root }}
-      run: poetry install --no-interaction
+      run: poetry install --no-interaction --verbose --no-ansi
 
     - name: Show installed depencies
       shell: bash
