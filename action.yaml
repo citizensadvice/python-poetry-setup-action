@@ -61,3 +61,8 @@ runs:
       shell: bash
       working-directory: ${{ inputs.project_root }}
       run: poetry install --no-interaction
+
+    - name: Show installed depencies
+      shell: bash
+      working-directory: ${{ inputs.project_root }}
+      run: poetry show --tree --no-ansi
