@@ -6,6 +6,7 @@ A Github Action that will:
 - Optionally set up the AWS CDK
 - Load the `.venv` directory from cache
 - Install the project dependencies (i.e. `poetry install`)
+- Print the installed packages version tree
 
 > [!NOTE]  
 > - This action will **not** perform a fetch of your project. This must be performed before this action is run
@@ -23,7 +24,7 @@ This action will cache the `.venv` directory for use with later workflow runs. Y
 | `python_version` | The Python version to install                              | No       | Version defined in pyproject.toml |
 | `project_root`   | The location of the python project root                    | No       | The root of the project           |
 | `install_cdk`    | Install the AWS CDK                                        | No       | False                             |
-| `cache_venv`     | Cache the .venv directory for use with later workflow runs | No       | True                              |
+| `cache_venv`     | Load and cache the .venv directory                         | No       | True                              |
 
 ## Example
 
