@@ -35,8 +35,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: citizensadvice/python-poetry-setup-action@v0
+      - uses: citizensadvice/python-poetry-setup-action@v1
 
       - name: Pytest
         run: poetry run pytest
 ```
+
+## Versioning
+
+The `v1` tag will be maintained and updated until there is an interface change.
