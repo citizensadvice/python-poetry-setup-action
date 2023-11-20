@@ -10,7 +10,7 @@ A Github Action that will:
 
 > [!NOTE]  
 > - This action will **not** perform a fetch of your project. This must be performed before this action is run
-> - When a Python version is not specified in the inputs, it will use the value in the `pyproject.toml` file. By default, Poetry will use `^3.X.X` for dependency versioning. This will often be too broad for most use-cases and you will likely need to set spesific version bracketing, for example `>=3.11 <3.12`
+> - When a Python version is not specified in the inputs, it will use the value in the `pyproject.toml` file. By default, Poetry will use `^3.X.X` for dependency versioning. This will often be too broad for most use-cases and you will likely need to set specific version bracketing, for example `>=3.11 <3.12`
 
 
 ## Cache
