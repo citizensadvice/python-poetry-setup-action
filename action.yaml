@@ -46,7 +46,10 @@ runs:
       id: install_cdk
       if: ${{ inputs.install_cdk }}
       shell: bash
-      run: npm install -g aws-cdk
+      run: |
+        npm i aws-cdk
+        export PATH=$PATH:$PWD/node_modules/aws-cdk/bin/cdk
+        cdk --version
 
     - name: Load cached venv
       id: cached-venv
