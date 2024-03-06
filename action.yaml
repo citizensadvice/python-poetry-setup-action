@@ -48,7 +48,7 @@ runs:
       shell: bash
       run: |
         npm i aws-cdk
-        export PATH=$PATH:$PWD/node_modules/aws-cdk/bin/
+        echo "export PATH=$PATH:$PWD/node_modules/aws-cdk/bin/" >> /home/runner/.bashrc
         cdk --version
 
     - name: Load cached venv
