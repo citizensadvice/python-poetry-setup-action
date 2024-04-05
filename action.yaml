@@ -17,6 +17,15 @@ inputs:
     description: 'Cache the .venv directory for use with later workflow runs. Defaults to true'
     required: false
     default: 'true'
+  codeartifact_login:
+    description: 'Log in to CodeArtifact. Defaults to false'
+    required: false
+    default: 'false'
+  codeartifact_source:
+    description: 'CodeArtifact source. Defaults to code-artifact'
+    required: false
+    default: 'code-artifact'
+
 
 runs:
   using: 'composite'
@@ -36,6 +45,14 @@ runs:
         virtualenvs-in-project: true
         installer-parallel: true
         virtualenvs-path: ${{ inputs.project_root }}/.venv
+    
+    - name: CodeArtifact login
+      id: codeartifact_login
+      if: ${{ inputs.codeartifact_login }}
+      shell: bash
+      run: |
+        poetry self add poetry-codeartifact-login
+        poetry aws-login ${{ inputs.codeartifact_source }}
 
     - name: Setup Node
       id: setup-node

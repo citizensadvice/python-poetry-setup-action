@@ -19,12 +19,14 @@ This action will cache the `.venv` directory for use with later workflow runs. Y
 
 ## Inputs
 
-| Input            | Description                                                | Required | Default                           |
-| ---------------- | ---------------------------------------------------------- | -------- | --------------------------------- |
-| `python_version` | The Python version to install                              | No       | Version defined in pyproject.toml |
-| `project_root`   | The location of the python project root                    | No       | The root of the project           |
-| `install_cdk`    | Install the AWS CDK                                        | No       | False                             |
-| `cache_venv`     | Load and cache the .venv directory                         | No       | True                              |
+| Input                 | Description                                                                         | Required | Default                           |
+| --------------------- | ----------------------------------------------------------------------------------- | -------- | --------------------------------- |
+| `python_version`      | The Python version to install                                                       | No       | Version defined in pyproject.toml |
+| `project_root`        | The location of the python project root                                             | No       | The root of the project           |
+| `install_cdk`         | Install the AWS CDK                                                                 | No       | False                             |
+| `cache_venv`          | Load and cache the .venv directory                                                  | No       | True                              |
+| `codeartifact_login`  | Log in to CodeArtifact. Defaults to false                                           | No       | False                             |
+| `codeartifact_source` | The name of the source in pyproject.toml to log into. Only supports a single source | No       | `code-artifact`                   |
 
 ## Example
 
