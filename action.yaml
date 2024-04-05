@@ -51,6 +51,7 @@ runs:
       if: ${{ inputs.codeartifact_login }}
       shell: bash
       run: |
+        cd ${{ inputs.project_root }}
         poetry self add poetry-codeartifact-login
         poetry aws-login ${{ inputs.codeartifact_source }}
 
