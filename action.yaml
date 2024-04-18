@@ -20,7 +20,7 @@ inputs:
   codeartifact_login:
     description: 'Log in to CodeArtifact. Defaults to false'
     required: false
-    default: 'false'
+    default: ''
   codeartifact_source:
     description: 'CodeArtifact source. Defaults to code-artifact'
     required: false
