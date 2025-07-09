@@ -4,8 +4,6 @@ version: 2
 updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
-    reviewers:
-      - 'citizensadvice/devops'
     schedule:
       interval: 'weekly'
       day: 'monday'
