@@ -32,14 +32,14 @@ runs:
   steps:
     - name: Setup Python
       id: setup-python
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
       with:
         python-version: ${{ inputs.python_version }}
         python-version-file: ${{ inputs.project_root }}/pyproject.toml
 
     - name: Install Poetry
       id: setup-poetry
-      uses: snok/install-poetry@v1.4.1
+      uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
@@ -58,7 +58,7 @@ runs:
     - name: Setup Node
       id: setup-node
       if: ${{ inputs.install_cdk }}
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
       with:
         node-version: 20
 
@@ -71,7 +71,7 @@ runs:
     - name: Load cached venv
       id: cached-venv
       if: ${{ inputs.cache_venv }}
-      uses: runs-on/cache@v4
+      uses: runs-on/cache@a5f51d6f3fece787d03b7b4e981c82538a0654ed
       with:
         path: ${{ inputs.project_root }}/.venv
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
