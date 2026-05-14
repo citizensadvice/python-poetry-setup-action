@@ -13,6 +13,10 @@ inputs:
     description: 'Install the AWS CDK. Defaults to false'
     required: false
     default: ''
+  node_version:
+    description: 'The version of Node.js to install'
+    required: false
+    default: '24'
   cache_venv:
     description: 'Cache the .venv directory for use with later workflow runs. Defaults to true'
     required: false
@@ -60,7 +64,7 @@ runs:
       if: ${{ inputs.install_cdk }}
       uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
       with:
-        node-version: 20
+        node-version: ${{ inputs.node_version }}
 
     - name: Install CDK
       id: install_cdk
