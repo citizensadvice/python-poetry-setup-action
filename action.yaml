@@ -43,7 +43,7 @@ runs:
 
     - name: Install Poetry
       id: setup-poetry
-      uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a
+      uses: snok/install-poetry@a783c322200f0519c7926aa6faa857c4e23e9263
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
